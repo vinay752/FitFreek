@@ -5,41 +5,7 @@
 	box-sizing: border-box;
 	font-family: 'Trebuchet MS', sans-serif;
 }
-#login-form
-{
-	width:300px;
-	position:absolute;
-	top:40%;
-	left:50%;
-	transform:translate(-50%,-40%);
-	text-align:center;
-	justify-content:center;
-}
-#login_email,#login_password
-{
-	width:100%;
-	border:2px solid cadetblue;
-	outline:none;
-	margin:5px;
-	padding:4% 0;
-	font-size:17px;
-}
-#login_button
-{
-	border:2px solid cadetblue;
-	width:101%;
-	margin:5px;
-	padding:4% 0;
-	background:#e7f5fe;
-	font-size:17px;
-	cursor:pointer;
-}
-#sign_in a
-{
-	font-weight:600;
-	text-decoration:none;
-	color:#000;
-}
+
 #get_start
 {
 	
@@ -421,4 +387,41 @@
 		top:50%;
 		border-radius:4px;
 	}
+}
+
+
+#login-form
+{
+	width:300px;
+	position:absolute;
+	top:40%;
+	left:50%;
+	transform:translate(-50%,-40%);
+	text-align:center;
+	justify-content:center;
+}
+#login_email,#login_password
+{
+	width:100%;
+	border:2px solid cadetblue;
+	outline:none;
+	margin:5px;
+	padding:4% 0;
+	font-size:17px;
+}
+#login_button
+{
+	border:2px solid cadetblue;
+	width:101%;
+	margin:5px;
+	padding:4% 0;
+	background:#e7f5fe;
+	font-size:17px;
+	cursor:pointer;
+}
+#sign_in a
+{
+	font-weight:600;
+	text-decoration:none;
+	color:#000;
 }
