@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>FitFreek</title>
+	<meta charset="UTF-8">
+	<meta name="description" content="" />
+	<meta name="application-name" content="FitFreek" />
+	<link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+	<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link type="text/css" rel="stylesheet" href="style.css">
+	
+	<style>
+		#header_nav
+		{
+			width:100%;
+			height:85px;
+		}
+		#landing_page_nav #nav_items a
+		{
+			color:black;
+		}
+		.highlight::before
+		{
+			background:#000;
+		}
+	</style>
+</head>
+
+<body>
+	<div>
+	<div id="header_nav">
+	<nav id="landing_page_nav">
+		<div id="nav_items">
+			<a href="index.html"><img src="images/logo_black.svg" id="home_logo" /></a>
+			<a href="index.html" class="highlight">Home</a>
+			<a href="Exercise-Plan.html" class="highlight">Workouts</a>
+			<a href="FitAssess.html" class="highlight">FitAssess</a>
+			<a href="#" class="highlight">Blogs</a>
+			<a href="#" class="highlight">Community</a>
+			<a href="#" class="highlight">About</a>
+		</div>
+	</nav>
+	</div>
+		<div id="FitAssessInp">
+			<div id="FitAssessInpInn">
+				<input type="text" id="age" placeholder="age" required/>
+				<div id="heightBox">
+					<input type="text" id="height" placeholder="height" required/>
+					<select id="heightConv">
+						<option>In</option>
+						<option selected>Cm</option>
+					</select>
+				</div>
+				<div id="weightBox">
+					<input type="text" id="weight" placeholder="weight" required/>
+					<select id="weightConv">
+						<option selected>Kgs</option>
+						<option>lbs</option>
+					</select>
+				</div>
+				<div>
+					<input type="radio" id="gender" name="gender" value="male"/>
+					<label for="male">Male</label>
+				</div>
+				<div>
+					<input type="radio" id="gender" name="gender" value="female"/>
+					<label for="female">Female</label>
+				</div>
+				<select id="activityLevel">
+					<option id="test">Sedentary</option>
+					<option>Light Active</option>
+					<option>Moderate Active</option>
+					<option>Very Active</option>
+					<option>Extra Active</option>
+				</select>
+				<button onclick="calculate()">Submit</button>
+			</div>
+			<div id="FitAssessDescription">
+				<ul>
+					<li>Sedentary : Little or no exercise</li>
+					<li>Light active : Light Exercise or Sports 1-3 Days a Week</li>
+					<li>Moderate active : Moderate Exercise or Sports 3-5 Days a Week</li>
+					<li>Very active : Hard Exercise or Sports 6-7 Days a Week</li>
+					<li>Extra active : Physically Demanding Job or Highly Active Exercise Routine</li>
+				<ul>
+			</div>
+		</div>
+	</div>
+	<script>
+		function calculate()
+		{
+			var age=document.getElementById('age').value;
+			
+			var gender=document.getElementsByName('gender');
+			var activityRef={"Sedentary":1.2,"Light Active":1.375,"Moderate Active":1.55,"Very Active":1.725,"Extra Active":1.9};
+			var activityLevel=document.getElementById('activityLevel').value;
+			var heightUnit=document.getElementById('heightConv').value;
+			var weightUnit=document.getElementById('weightConv').value;
+			
+			if (heightUnit=='Cm')
+			{
+				var height=(document.getElementById('height').value*0.3937).toFixed(2);
+			}
+			else
+			{
+				var height = document.getElementById('height').value;
+			}
+			
+			if(weightConv='Kgs')
+			{
+				var weight = (document.getElementById('weight').value*2.20462262185).toFixed(2);
+			}
+			else
+			{
+				var weight=document.getElementById('weight').value;
+			}
+			//BMR
+			var BMR=[];
+			var BMI=((703*weight)/Math.pow(height,2)).toFixed(2);
+			for(let i=0;i<gender.length;i++)
+			{
+				if(gender[i].checked)
+				{
+					if(gender[i].value=='male')
+					{
+						console.log("BMR : "+(10*0.453592*weight + 6.25*2.54*height - 5*age + 5).toFixed(2));
+						BMR.push(10*0.453592*weight + 6.25*2.54*height - 5*age + 5);
+					}
+					else
+					{
+						console.log("BMR : "+(10*0.453592*weight + 6.25*2.54*height - 5*age -161).toFixed(2));
+						BMR.push(10*0.453592*weight + 6.25*2.54*height - 5*age -161);
+					}
+					
+				}
+			}
+			
+			//BMI
+			console.log("BMI :",BMI);
+			if(BMI<17)
+			{
+				console.log("Thinness");
+			}
+			else if(BMI>=17 && BMI<18.5)
+			{
+				console.log("Underweight");
+			}
+			else if(BMI>=18.5 && BMI<25)
+			{
+				console.log("Normal weight");
+			}
+			else if(BMI>=25 && BMI<30)
+			{
+				console.log("Overweight");
+			}
+			else if(BMI>=30 && BMI<40)
+			{
+				console.log("Obesity");
+			}
+			else
+			{
+				console.log("Severe Obesity");
+			}
+			
+			var TDEE = (activityRef[activityLevel	]*BMR[0]).toFixed(2);
+			console.log("TDEE :",TDEE);
+			console.log("MACROS \nCarbohydrates : "+((TDEE*0.5)/4).toFixed(0)+" grams\nProtien : "+((TDEE*0.2)/4).toFixed(0)+" grams\nFats : "+((TDEE*0.3)/9).toFixed(0)+" grams");
+			console.log("Lose 1lb/wk : "+(TDEE-500)+"\nGain 1lb/wk : "+(parseFloat(TDEE)+500));
+			
+		}
+	</script>
+</body>
+</html>
