@@ -3,7 +3,7 @@
 <head>
 	<title>FitFreek</title>
 	<meta charset="UTF-8">
-	<meta name="description" content="Fitness Calculator by FitFreek" /> 
+	<meta name="description" content="" />
 	<meta name="application-name" content="FitFreek" />
 	<link rel="icon" type="image/x-icon" href="images/favicon.ico" />
 	<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
@@ -11,11 +11,7 @@
 	<link type="text/css" rel="stylesheet" href="style.css">
 	
 	<style>
-		#header_nav
-		{
-			width:100%;
-			height:85px;
-		}
+		
 		#landing_page_nav #nav_items a
 		{
 			color:black;
@@ -44,7 +40,7 @@
 	</div>
 		<div id="FitAssessInp">
 			<div id="FitAssessInpInn">
-				<input type="text" id="age" placeholder="age" required/>
+				<input type="text" id="age" placeholder="age" required />
 				<div id="heightBox">
 					<input type="text" id="height" placeholder="height" required/>
 					<select id="heightConv">
@@ -86,6 +82,14 @@
 				<ul>
 			</div>
 		</div>
+		<div id="metrics">
+			<div id="bmi"></div>
+			<div id="bmiRange"></div>
+			<div id="bmr"></div>
+			<div id="tdee"></div>
+			<div id="macros"></div>
+			<div id="changeWeight"></div>
+		</div>
 	</div>
 	<script>
 		function calculate()
@@ -107,7 +111,7 @@
 				var height = document.getElementById('height').value;
 			}
 			
-			if(weightConv='Kgs')
+			if(weightUnit=='Kgs')
 			{
 				var weight = (document.getElementById('weight').value*2.20462262185).toFixed(2);
 			}
@@ -115,7 +119,8 @@
 			{
 				var weight=document.getElementById('weight').value;
 			}
-			//BMR
+			if(((!isNaN(height)&& !isNaN(weight)) &&(height!=0 && weight!=0)) && !isNaN(age) && (age>0 && age<=100) && (gender[0].checked || gender[1].checked))
+			{
 			var BMR=[];
 			var BMI=((703*weight)/Math.pow(height,2)).toFixed(2);
 			for(let i=0;i<gender.length;i++)
@@ -124,50 +129,64 @@
 				{
 					if(gender[i].value=='male')
 					{
-						console.log("BMR : "+(10*0.453592*weight + 6.25*2.54*height - 5*age + 5).toFixed(2));
 						BMR.push(10*0.453592*weight + 6.25*2.54*height - 5*age + 5);
+						document.getElementById('bmr').innerHTML="BMR : "+BMR[0].toFixed(2);
 					}
 					else
 					{
-						console.log("BMR : "+(10*0.453592*weight + 6.25*2.54*height - 5*age -161).toFixed(2));
 						BMR.push(10*0.453592*weight + 6.25*2.54*height - 5*age -161);
+						document.getElementById('bmi').innerHTML="BMR : "+BMR[0].toFixed(2);
 					}
 					
 				}
 			}
 			
 			//BMI
-			console.log("BMI :",BMI);
+			document.getElementById("bmi").innerHTML="BMI : "+BMI;
+			document.getElementById("bmi").style.color="#000000";
 			if(BMI<17)
 			{
-				console.log("Thinness");
+				document.getElementById("bmiRange").innerHTML="Thinness";
 			}
 			else if(BMI>=17 && BMI<18.5)
 			{
-				console.log("Underweight");
+				document.getElementById("bmiRange").innerHTML="Underweight";
 			}
 			else if(BMI>=18.5 && BMI<25)
 			{
-				console.log("Normal weight");
+				document.getElementById("bmiRange").innerHTML="Normal weight";
 			}
 			else if(BMI>=25 && BMI<30)
 			{
-				console.log("Overweight");
+				document.getElementById("bmiRange").innerHTML="Overweight";
 			}
 			else if(BMI>=30 && BMI<40)
 			{
-				console.log("Obesity");
+				document.getElementById("bmiRange").innerHTML="Obesity";
 			}
 			else
 			{
-				console.log("Severe Obesity");
+				document.getElementById("bmiRange").innerHTML="Severe Obesity";
 			}
 			
 			var TDEE = (activityRef[activityLevel	]*BMR[0]).toFixed(2);
-			console.log("TDEE :",TDEE);
-			console.log("MACROS \nCarbohydrates : "+((TDEE*0.5)/4).toFixed(0)+" grams\nProtien : "+((TDEE*0.2)/4).toFixed(0)+" grams\nFats : "+((TDEE*0.3)/9).toFixed(0)+" grams");
-			console.log("Lose 1lb/wk : "+(TDEE-500)+"\nGain 1lb/wk : "+(parseFloat(TDEE)+500));
+			document.getElementById("tdee").innerHTML="TDEE : "+TDEE;
 			
+			document.getElementById("macros").innerHTML="<p>Macros : </p></br>"+"<p>Carbohydrates : "+((TDEE*0.5)/4).toFixed(0)+" grams</p><p>Protein : "+((TDEE*0.2)/4).toFixed(0)+" grams</p><p>Fats : "+((TDEE*0.3)/9).toFixed(0)+" grams</p>"
+			document.getElementById("changeWeight").innerHTML="<p> lose 1lb/week : "+(TDEE-500)+"</p></br><p>Gain 1lb/week : "+(parseFloat(TDEE)+500).toFixed(2)+"</p>";
+			}
+			else
+			{
+				document.getElementById("bmi").innerHTML= "Check for all the values.";
+				document.getElementById("bmi").style.color="#ff4242";
+				
+				document.getElementById("bmr").innerHTML="";
+				document.getElementById("bmiRange").innerHTML="";
+				document.getElementById("gender").innerHTML="";
+				document.getElementById("tdee").innerHTML="";
+				document.getElementById("macros").innerHTML="";
+				document.getElementById("changeWeight").innerHTML=""	
+			}
 		}
 	</script>
 </body>
