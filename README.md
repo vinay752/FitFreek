@@ -1,1 +1,1 @@
-<i style="font-size:60px">FitFreek</i>
+<i style="font-size:100px">FitFreek</i>
