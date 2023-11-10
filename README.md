@@ -1,1 +1,1 @@
-<h1 style="color:green;">FitFreek</h1>
+<i>FitFreek</i>
