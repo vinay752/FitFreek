@@ -517,10 +517,6 @@
 	position:absolute;
 	top:75%;
 	left:18%;
-	display:grid;
-	column-gap:80px;
-	row-gap:40px;
-	  grid-template-columns: auto auto auto;
-	width:80%;
+	
 	
 }
