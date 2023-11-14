@@ -1,4 +1,4 @@
-#Product Overview
+# Product Overview
 Our product is an online application that users sign up for and let us know what they are looking for in addtion to what kind of activities they want to do or excel in. If it is specifically weightlifting we will have the application be able to track progress on when to increase weights, when to decrease them for fatigue, etc. We will also be able to help whether they are a beginning, intermediate, or advanced. It is more aimed at tracking the sets, reps, and weights that people do in their weightlifting journey. Our application will also determine if people have completed their workout for the day and have a reward system with TBD rewards for the user to continue progressing in the program.
-#Current Status
+# Current Status
 This is an initial prototype that is working towards accomplishing what is described above. We hope to further improve the database of workouts, increase cutomization abilities, and add more interactive features. Some specific goals we have for this application moving forward are, being able to adjust weights/reps/sets based on the users progress and potentially implementing AI to suggest custom workouts tailored to each individual user. 
