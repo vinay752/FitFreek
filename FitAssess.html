@@ -174,7 +174,7 @@
 			document.getElementById("tdee").innerHTML="TDEE : "+TDEE;
 			
 			document.getElementById("macros").innerHTML="<p>Macros : </p></br>"+"<p>Carbohydrates : "+((TDEE*0.5)/4).toFixed(0)+" grams</p><p>Protein : "+((TDEE*0.2)/4).toFixed(0)+" grams</p><p>Fats : "+((TDEE*0.3)/9).toFixed(0)+" grams</p>"
-			document.getElementById("changeWeight").innerHTML="<p> lose 1lb/week : "+(TDEE-500)+"</p></br><p>Gain 1lb/week : "+(parseFloat(TDEE)+500).toFixed(2)+"</p>";
+			document.getElementById("changeWeight").innerHTML="<p> lose 1lb/week : "+(TDEE-500).toFixed(2)+"</p></br><p>Gain 1lb/week : "+(parseFloat(TDEE)+500).toFixed(2)+"</p>";
 			}
 			else
 			{
